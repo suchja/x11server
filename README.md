@@ -13,6 +13,7 @@ My intention for this image was to have a clear separation of concerns. This ima
 When you start the `x11-service` image, you should adjust at least some of its configuration.
 
 `VNC_PASSWORD`
+
 This variable is mandatory and specifies the password you need to enter into your VNC-client when connecting to the VNC-Server running in a container from this image.
 
 ##Maintenance
