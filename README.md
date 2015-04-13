@@ -8,7 +8,9 @@ My intention for this image was to have a clear separation of concerns. This ima
 ##Usage
 
 ##Maintenance
-The image is build on Docker hub with [Automated builds](http://docs.docker.com/docker-hub/builds/). Also a [repository link](http://docs.docker.com/docker-hub/builds/#repository-links) to its parent image is configured. So it is automatically updated, when the parent image is updated.
+The image is build on Docker hub with [Automated builds](http://docs.docker.com/docker-hub/builds/). There is no dedicated maintenance schedule for this image. It is relying on packages from `debian:jessie` and thus I do not assume to update it frequently.
+
+In case you have any issues, you are invited to create a pull request or an issue on the related [github repository](https://github.com/suchja/x11-service).
 
 ##Copyright free
 The sources in [this](https://github.com/suchja/x11-vnc-server.git) Github repository, from which the docker image is build, are copyright free (see LICENSE.md). Thus you are allowed to use these sources (e.g. Dockerfile and README.md) in which ever way you like.
