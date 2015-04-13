@@ -1,5 +1,9 @@
 ##About
-A Docker Image running an X-Server (xvfb based) and providing the display via VNC to the host or any other machine.
+Docker Image for creating a service container providing an X11-Server in conjunction with a VNC-Server. It allows to get the display of an application running inside a docker container to the host or any other machine accessing the VNC-Server.
+
+It is intended to be used in conjunction with at least one other container hosting the application requiring an X-Server (aka X-Client). This differentiates it from other solutions running the X-Server, the VNC-Server and the X-Client in the same container.
+
+My intention for this image was to have a clear separation of concerns. This image is responsible for all the X-Server stuff. Another image can fully concentrate on the application and is simply linked to a container of this image.
 
 ##Usage
 
