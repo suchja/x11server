@@ -8,10 +8,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 				x11vnc \
 		&& rm -rf /var/lib/apt/lists/*
 
-# Setup a password for vnc
-RUN mkdir ~/.vnc \
-		&& x11vnc -storepasswd myPW ~/.vnc/passwd
-
 # start x11vnc and expose its port, which is 5900 + display number
 EXPOSE 5901
 COPY docker-entrypoint.sh /entrypoint.sh
