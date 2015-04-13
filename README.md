@@ -9,6 +9,12 @@ My intention for this image was to have a clear separation of concerns. This ima
 
 **ATTENTION:** This image is currently under development. Especially security is not considered. So please be aware of this when using it. When development is completed, passwords and other security aspects will be documented here.
 
+###Environment Variables
+When you start the `x11-service` image, you should adjust at least some of its configuration.
+
+`VNC_PASSWORD`
+This variable is mandatory and specifies the password you need to enter into your VNC-client when connecting to the VNC-Server running in a container from this image.
+
 ##Maintenance
 The image is build on Docker hub with [Automated builds](http://docs.docker.com/docker-hub/builds/). There is no dedicated maintenance schedule for this image. It is relying on packages from `debian:jessie` and thus I do not assume to update it frequently.
 
