@@ -1,5 +1,5 @@
 ##About
-Docker Image for creating a service container providing an X11-Server in conjunction with a VNC-Server. It allows to get the display of an application running inside a docker container to the host or any other machine accessing the VNC-Server.
+Docker Image for creating a service container providing an framebuffered X11-Server ([xvfb](http://www.x.org/archive/X11R7.6/doc/man/man1/Xvfb.1.xhtml)) in conjunction with a VNC-Server ([x11vnc](http://www.karlrunge.com/x11vnc/)). It allows to get the display of an application running inside a docker container to the host or any other machine accessing the VNC-Server.
 
 It is intended to be used in conjunction with at least one other container hosting the application requiring an X-Server (aka X-Client). This differentiates it from other solutions running the X-Server, the VNC-Server and the X-Client in the same container.
 
