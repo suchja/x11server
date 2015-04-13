@@ -1,9 +1,6 @@
 FROM debian:jessie
 MAINTAINER Jan Suchotzki <jan@suchotzki.de>
 
-# winetricks is located in the contrib repository
-#RUN echo "deb http://http.debian.net/debian jessie contrib" > /etc/apt/sources.list.d/contrib.list
-
 # Install xvfb as X-Server and x11vnc as VNC-Server
 RUN apt-get update && apt-get install -y --no-install-recommends \
 				xvfb \
