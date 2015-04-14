@@ -10,5 +10,9 @@ fi
 Xvfb :0 -screen 0 1024x768x24 2>&1 &
 sleep 2
 
+# allow any connections on XServer port (tcp port 6000)
+# ATTENTION: Big security issue here, or?
+xhost +
+
 # Now we can run the VNC-Server based on our just started X-Server
 x11vnc -forever -passwd $VNC_PASSWORD -display :0
