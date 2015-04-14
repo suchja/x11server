@@ -7,10 +7,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 				xauth \
 				x11vnc \
 				x11-xserver-utils \
+				net-tools \
 		&& rm -rf /var/lib/apt/lists/*
 
-# start x11vnc and expose its port, which is 5900 + display number
-EXPOSE 5901
+# start x11vnc and expose its port
+ENV DISPLAY :0.0
+EXPOSE 5900
 COPY docker-entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
