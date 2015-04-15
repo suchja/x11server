@@ -18,8 +18,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 				xvfb \
 				xauth \
 				x11vnc \
-				x11-xserver-utils \
-				net-tools \
 		&& rm -rf /var/lib/apt/lists/*
 
 # create or use the volume depending on how container is run
