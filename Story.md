@@ -25,7 +25,29 @@ So the solution comprises the following docker images:
 - [suchja/x11server] - This image runs X11 server and VNC server. It provides a magic cookie for an X11 client to connect to the server and requires the user to set a password for the VNC connection. Additionally it is possible to configure some parameters of the X11 server via environment variables. In the future I'll have a look into further securing the access to this image.
 - [suchja/x11client] - Uses the magic cookie from X11 server to prepare for an authenticated connection to it. It is intended as a base image for an application requiring X11 access. 
 - [suchja/wine] - My sample application to verify that the X11 acess works as expected. It is derived `FROM suchja/x11client`. Additionally it also uses an entrypoint script to use wine as the command which is always run when the container is started.
-- maybe someday: suchja/x11tools - Even though not required for my initial application, it might be a good idea to get some screenshots or maybe even videos from the running X11 server. Thus this image could provide some additional tools for accessing the X11 server.
+- [suchja/x11tools] - Even though not required for my initial application, it might be a good idea to get some screenshots or maybe even videos from the running X11 server. Thus this image could provide some additional tools for accessing the X11 server.
+
+##Keep it easy with docker-compose
+One of the problems with using several containers is that you need to start and properly link them. Remembering long commands and typing them again is not that nice. Therefore `docker-compose` can help you.
+
+Setting up my environment with wine requires the following `docker-compose.yml`:
+
+```
+X11server:
+	image: suchja/x11server
+	ports:
+		- 5900:5900
+	environment:
+		VNC_PASSWORD: yourPW
+
+X11App:
+	image: suchja/wine
+	links:
+		- X11Server:xserver
+	volumes_from:
+		- X11Server
+```
+
 
 ##Experience and other use cases
 After several experiments, I'm now satisfied with the solution. The `x11server` and `x11client` images are really flexible and dedicated to mainly one responsibility. I can also choose whether to start the server at all. When running the x11 application (e.g. my `wine` container) on a hosting plattform, I can do so without running the `x11server` and thus save resources (although the application might give some warnings about the missing X11 server).
