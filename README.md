@@ -7,7 +7,7 @@ A base image for creating a container with an application using this X11 server 
 
 My intention for this image was to have a clear separation of concerns. This image is responsible for all the X-Server stuff. Another image can fully concentrate on the application and is simply linked to a container of this image.
 
-More details can be found [here](Story.md).
+More details can be found [here](https://github.com/suchja/x11server/blob/master/Story.md).
 
 ##Usage
 
