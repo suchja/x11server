@@ -3,6 +3,8 @@ Docker Image for creating a service container providing an framebuffered X11-Ser
 
 It is intended to be used in conjunction with at least one other container hosting the application requiring an X-Server (aka X-Client). This differentiates it from other solutions running the X-Server, the VNC-Server and the X-Client in the same container.
 
+A base image for creating a container with an application using this X11 server container can be found [here](tbd).
+
 My intention for this image was to have a clear separation of concerns. This image is responsible for all the X-Server stuff. Another image can fully concentrate on the application and is simply linked to a container of this image.
 
 More details can be found [here](Story.md).
@@ -24,10 +26,24 @@ Hint: In case you don't like to type the environment variables on the command pr
 
 This variable is mandatory and specifies the password you need to enter into your VNC-client when connecting to the VNC-Server running in a container from this image.
 
+###docker-compose
+You can use `docker-compose` to avoid typing or copy-and-pasting all the stuff again and again on the command line. Here an excerpt from a `docker-compose.yml` file starting a container from this image:
+
+```
+xserver:
+	image: suchja/x11server
+	ports:
+		- 5900:5900
+	environment:
+		VNC_PASSWORD: yourPW
+```
+
+Save this inside `docker-compose.yml`, add a proper password and call `docker-compose up`. Now you will have a running X11 server waiting for X11 clients and VNC clients to connect.
+
 ##Maintenance
 The image is build on Docker hub with [Automated builds](http://docs.docker.com/docker-hub/builds/). There is no dedicated maintenance schedule for this image. It is relying on packages from `debian:jessie` and thus I do not assume to update it frequently.
 
-In case you have any issues, you are invited to create a pull request or an issue on the related [github repository](https://github.com/suchja/x11-service).
+In case you have any issues, you are invited to create a pull request or an issue on the related [github repository](https://github.com/suchja/x11server.git).
 
 ##Copyright free
 The sources in [this](https://github.com/suchja/x11server.git) Github repository, from which the docker image is build, are copyright free (see LICENSE.md). Thus you are allowed to use these sources (e.g. Dockerfile and README.md) in which ever way you like.
