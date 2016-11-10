@@ -13,7 +13,7 @@ More details can be found [here](https://github.com/suchja/x11server/blob/master
 
 Running a container based on this image is quite easy. It is intended to be run as daemon. So you can run via:
 
-`docker run -d --name display -e VNC_PASSWORD=newPW -p 5900:5900 suchja/x11server`
+`docker run -d --name display -e VNC_PASSWORD=newPW -e XFB_SCREEN=1280x800x24 -p 5900:5900 suchja/x11server`
 
 You should give it a name (here `display`), because a container running the client should be linked with this container. Forwarding the port `5900` allows you to access the VNC server from within your network.
 
@@ -26,6 +26,10 @@ Hint: In case you don't like to type the environment variables on the command pr
 
 This variable is mandatory and specifies the password you need to enter into your VNC-client when connecting to the VNC-Server running in a container from this image.
 
+`XFB_SCREEN`
+
+Specifies screen width, height, and depth (WxHxD). By default, screen has the dimensions 1024x768x24.
+
 ### docker-compose
 You can use `docker-compose` to avoid typing or copy-and-pasting all the stuff again and again on the command line. Here an excerpt from a `docker-compose.yml` file starting a container from this image:
 
@@ -36,6 +40,7 @@ xserver:
 		- 5900:5900
 	environment:
 		VNC_PASSWORD: yourPW
+		XFB_SCREEN: 1280x800x24
 ```
 
 Save this inside `docker-compose.yml`, add a proper password and call `docker-compose up`. Now you will have a running X11 server waiting for X11 clients and VNC clients to connect.
